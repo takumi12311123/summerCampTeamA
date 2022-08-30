@@ -4,5 +4,7 @@
 
 ### docker (ROOT直下で)
 ```sudo service docker start```
+
 dockerがstartしたら
+
 ```docker-compose up```
