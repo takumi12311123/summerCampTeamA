@@ -13,6 +13,6 @@ dockerがstartしたら
 
 .env.exampleの中身が.envにcopyされます
 
-.env.exampleに、トークンやパスワードを含めるのは禁止
+.env.exampleに、トークンやパスワードを含めるのは禁止（セキュリティー的に危険です）
 
 ```cp .env.example .env```
