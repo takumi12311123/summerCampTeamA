@@ -8,3 +8,7 @@
 dockerがstartしたら
 
 ```docker-compose up```
+
+### 環境変数
+
+```cp .env.example .env```
