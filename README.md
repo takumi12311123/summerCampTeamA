@@ -23,3 +23,18 @@ dockerがstartしたら
 
 ```cp .env.example .env```
 
+### githubの使い方
+
+1.branchを切る
+
+2.編集をする
+
+3.```git add .```
+
+4.```git commit -m "commit名"```
+
+5.```git push -u origin branch名```
+
+6.Pull Requestを出す
+
+7.conflictがなければmerge
