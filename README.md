@@ -8,6 +8,10 @@ https://qiita.com/k_bobchin/items/717c216ddc29e5fbcd43
 
 ## how to develop
 
+### clone
+
+```git clone git@github.com:takumi12311123/summerCampTeamA.git```
+
 ### docker (ROOT直下で)
 ```sudo service docker start```
 
@@ -38,3 +42,5 @@ dockerがstartしたら
 6.Pull Requestを出す
 
 7.conflictがなければmerge
+
+8.mergeし終わったら、毎回```git pull origin main```で自分の環境を最新版にしてください
