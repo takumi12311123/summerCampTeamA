@@ -51,3 +51,5 @@ dockerがstartしたら
 ※conflictが出たとき、修正できるのであれば、修正後にmerge
 
 8.mergeしたら、毎回```git pull origin main```で自分の環境を最新版にしてください
+
+2022/09/06 commit check by aoba
