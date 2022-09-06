@@ -48,5 +48,6 @@ dockerがstartしたら
 6.Pull Requestを出す
 
 7.conflictがなければmerge
+※conflictが出たとき、修正できるのであれば、修正後にmerge
 
 8.mergeしたら、毎回```git pull origin main```で自分の環境を最新版にしてください
