@@ -49,4 +49,4 @@ dockerがstartしたら
 
 7.conflictがなければmerge
 
-8.mergeし終わったら、毎回```git pull origin main```で自分の環境を最新版にしてください
+8.mergeしたら、毎回```git pull origin main```で自分の環境を最新版にしてください
