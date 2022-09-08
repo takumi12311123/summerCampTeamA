@@ -6,6 +6,14 @@ setting.jsonから、左下のところで、すべてinstallを選択してく�
 
 https://qiita.com/k_bobchin/items/717c216ddc29e5fbcd43
 
+setting.jsonに以下を追加
+```
+{
+  "editor.formatOnSave": true,
+  "extensions.ignoreRecommendations": false
+}
+```
+
 ### issueの追加の仕方
 
 ```// TODO　issueの追加```
