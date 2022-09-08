@@ -11,6 +11,8 @@
     "ms-azuretools.vscode-docker",
     "ms-python.python",
     "xabikos.javascriptsnippets",
-    "ionutvmi.path-autocomplete"
+    "ionutvmi.path-autocomplete",
+    "formulahendry.auto-rename-tag",
+    "mosapride.zenkaku"
   ]
 }
