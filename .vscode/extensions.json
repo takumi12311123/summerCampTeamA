@@ -10,6 +10,7 @@
     "oderwat.indent-rainbow",
     "ms-azuretools.vscode-docker",
     "ms-python.python",
-    "xabikos.JavaScriptSnippets"
+    "xabikos.javascriptsnippets",
+    "ionutvmi.path-autocomplete"
   ]
 }
