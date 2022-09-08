@@ -2,10 +2,6 @@
 
 ### 設定
 
-setting.jsonから、左下のところで、すべてinstallを選択してください
-
-https://qiita.com/k_bobchin/items/717c216ddc29e5fbcd43
-
 setting.jsonに以下を追加
 ```
 {
@@ -13,6 +9,12 @@ setting.jsonに以下を追加
   "extensions.ignoreRecommendations": false
 }
 ```
+
+setting.jsonから、左下のところで、すべてinstallを選択してください
+
+その後の詳しいやり方は、下記URLのQiita参照
+
+https://qiita.com/k_bobchin/items/717c216ddc29e5fbcd43
 
 ### issueの追加の仕方
 
