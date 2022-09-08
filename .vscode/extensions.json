@@ -4,6 +4,9 @@
     "streetsidesoftware.code-spell-checker",
     "codezombiech.gitignore",
     "ms-vsliveshare.vsliveshare",
-    "Gruntfuggly.todo-tree"
+    "gruntfuggly.todo-tree",
+    "eamodio.gitlens",
+    "vscode-icons-team.vscode-icons",
+    "oderwat.indent-rainbow"
   ]
 }
