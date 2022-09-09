@@ -39,7 +39,7 @@ voltaをinstallしてください
 
 dockerがstartしたら
 
-```docker-compose up```
+```docker compose up --build```
 
 ### 環境変数
 
