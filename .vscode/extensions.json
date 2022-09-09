@@ -13,6 +13,7 @@
     "xabikos.javascriptsnippets",
     "ionutvmi.path-autocomplete",
     "formulahendry.auto-rename-tag",
-    "mosapride.zenkaku"
+    "mosapride.zenkaku",
+    "ritwickdey.LiveServer"
   ]
 }
