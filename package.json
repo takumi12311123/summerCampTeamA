@@ -1,0 +1,22 @@
+{
+  "name": "summercamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takumi12311123/summerCampTeamA.git"
+  },
+  "author": "takumiakasaka",
+  "license": "ISC",
+  "volta": {
+    "node": "16.14.0",
+    "npm": "8.5.1"
+  },
+  "dependencies": {
+    "skyway-js": "^4.4.5"
+  }
+}
