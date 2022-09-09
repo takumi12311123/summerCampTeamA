@@ -12,8 +12,8 @@
   },
   "author": "takumiakasaka",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/takumi12311123/summerCampTeamA/issues"
-  },
-  "homepage": "https://github.com/takumi12311123/summerCampTeamA#readme"
+  "volta": {
+    "node": "16.14.0",
+    "npm": "8.5.1"
+  }
 }
