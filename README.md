@@ -34,12 +34,16 @@ voltaをinstallしてください
 
 ```git clone git@github.com:takumi12311123/summerCampTeamA.git```
 
-### docker (ROOT直下で)
+### docker (ROOT直下で)→一旦保留
 ```sudo service docker start```
 
 dockerがstartしたら
 
 ```docker compose up --build```
+
+### npm install
+
+```npm ci```
 
 ### 環境変数
 
