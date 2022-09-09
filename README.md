@@ -24,6 +24,12 @@ https://qiita.com/k_bobchin/items/717c216ddc29e5fbcd43
 
 ## how to develop
 
+### voltaのinstall
+
+https://docs.volta.sh/guide/
+
+voltaをinstallしてください
+
 ### clone
 
 ```git clone git@github.com:takumi12311123/summerCampTeamA.git```
