@@ -1,5 +1,9 @@
 version: "3.3"
 services:
+  container:
+    container_name: summerCampTeamAForEnvironment
+    build:
+      dockerfile: Dockerfile
   db:
     image: mysql:8
     container_name: summerCampTeamA
