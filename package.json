@@ -15,5 +15,8 @@
   "volta": {
     "node": "16.14.0",
     "npm": "8.5.1"
+  },
+  "dependencies": {
+    "skyway-js": "^4.4.5"
   }
 }
