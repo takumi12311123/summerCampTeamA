@@ -1,0 +1,1 @@
+const Peer = window.Peer;
