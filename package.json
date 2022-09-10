@@ -17,6 +17,10 @@
     "npm": "8.5.1"
   },
   "dependencies": {
+    "dotenv": "^16.0.2",
+    "html-webpack-plugin": "^5.5.0",
+    "loadenv": "^2.2.0",
+    "pug": "^3.0.2",
     "skyway-js": "^4.4.5"
   }
 }
