@@ -12,8 +12,16 @@
   <body>
     <script>
       const peer = new Peer({
-        key: "YOUR_API_KEY",
+        // TODO 消す
+        key: "API_KEY",
         debug: 3,
+      });
+      peer.on('call', mediaConnection => {
+        mediaConnection.answer(localStream);
+        setEventListener(mediaConnection);
+      });
+      peer.on('error', err => {
+        alert(err.message);
       });
       let localStream;
       // カメラ映像取得
@@ -26,17 +34,33 @@
           videoElm.play();
           // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
           localStream = stream;
-          peer.on("open", () => {
-            document.getElementById("my-id").textContent = peer.id;
-          });
         })
         .catch((error) => {
           // 失敗時にはエラーログを出力
           console.error("mediaDevice.getUserMedia() error:", error);
           return;
         });
+
+        document.getElementById('make-call').onclick = () => {
+          const theirID = document.getElementById('their-id').value;
+          const mediaConnection = peer.call(theirID, localStream);
+          setEventListener(mediaConnection);
+          };
+
+        // Function to set an event listener
+        const setEventListener = mediaConnection => {
+          mediaConnection.on('stream', stream => {
+            // Set a camera image to the video element and play it
+            const videoElm = document.getElementById('their-video')
+            videoElm.srcObject = stream;
+            videoElm.play();
+          });
+        }
     </script>
     <video id="my-video" width="400px" autoplay muted playsinline></video>
     <p id="my-id"></p>
+    <input id="their-id"></input>
+  <button id="make-call">Make Call</button>
+  <video id="their-video" width="400px" autoplay muted playsinline></video>
   </body>
 </html>
