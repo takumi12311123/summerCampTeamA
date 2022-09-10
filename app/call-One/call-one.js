@@ -12,3 +12,4 @@ const Peer = window.Peer;
 
 // TODO このidを全てgetElementByIdで変数に入れてほしいです！
 // 例 const remoteStream = getElementById("js-remote-stream")
+// 変数名は、全てjsを除いたもの!
