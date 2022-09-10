@@ -73,5 +73,3 @@ docker が start したら
 ※conflict が出たとき、修正できるのであれば、修正後に merge
 
 8.merge したら、毎回`git pull origin main`で自分の環境を最新版にしてください
-
-aiueo
