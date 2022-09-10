@@ -11,20 +11,12 @@
   </head>
   <body>
     <script>
+      let localStream;
       const peer = new Peer({
         // TODO 消す
         key: "API_KEY",
         debug: 3,
       });
-      peer.on('call', mediaConnection => {
-        mediaConnection.answer(localStream);
-        setEventListener(mediaConnection);
-      });
-      peer.on('error', err => {
-        alert(err.message);
-      });
-      let localStream;
-      // カメラ映像取得
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then((stream) => {
@@ -40,6 +32,17 @@
           console.error("mediaDevice.getUserMedia() error:", error);
           return;
         });
+        peer.on('open', () => {
+          document.getElementById('my-id').textContent = peer.id;
+        });
+      peer.on('call', mediaConnection => {
+          mediaConnection.answer(localStream);
+          setEventListener(mediaConnection);
+        });
+        
+      peer.on('error', err => {
+        alert(err.message);
+      });
 
         document.getElementById('make-call').onclick = () => {
           const theirID = document.getElementById('their-id').value;
@@ -60,7 +63,7 @@
     <video id="my-video" width="400px" autoplay muted playsinline></video>
     <p id="my-id"></p>
     <input id="their-id"></input>
-  <button id="make-call">Make Call</button>
-  <video id="their-video" width="400px" autoplay muted playsinline></video>
+    <button id="make-call">Make Call</button>
+    <video id="their-video" width="400px" autoplay muted playsinline></video>
   </body>
 </html>
