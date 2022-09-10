@@ -58,6 +58,8 @@ docker が start したら
 ### github の使い方
 
 1.branch を切る
+```git branch ~~```
+```git checkout ~~```
 
 2.編集をする
 
