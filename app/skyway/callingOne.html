@@ -7,13 +7,11 @@
     <title>SkyWayチュートリアル</title>
   </head>
   <body>
-    <!-- <script src="./turnOnVideo.js"></script> -->
-    <script>
-      //   const peer = new Peer({ key: process.env.API_KEY, debug: 3 });
-      const Peer = require("skyway-js");
-      const peer = new Peer({ key: "あなたのAPIキー" });
-
-      let localStream;
+    <script
+      type="text/javascript"
+      src="https://cdn.webrtc.ecl.ntt.com/skyway-4.4.5.js"
+    >
+        let localStream;
       // カメラ映像取得
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
