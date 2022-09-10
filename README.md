@@ -2,7 +2,8 @@
 
 ### 設定
 
-setting.jsonに以下を追加
+setting.json に以下を追加
+
 ```
 {
   "editor.formatOnSave": true,
@@ -10,64 +11,67 @@ setting.jsonに以下を追加
 }
 ```
 
-setting.jsonから、左下のところで、すべてinstallを選択してください
+setting.json から、左下のところで、すべて install を選択してください
 
-その後の詳しいやり方は、下記URLのQiita参照
+その後の詳しいやり方は、下記 URL の Qiita 参照
 
 https://qiita.com/k_bobchin/items/717c216ddc29e5fbcd43
 
-### issueの追加の仕方
+### issue の追加の仕方
 
-```// TODO　issueの追加```
+`// TODO issueの追加`
 
-コメントアウトの時に、冒頭にTODOとつけると、issueに追加しやすくなります
+コメントアウトの時に、冒頭に TODO とつけると、issue に追加しやすくなります
 
 ## how to develop
 
-### voltaのinstall
+### volta の install
 
 https://docs.volta.sh/guide/
 
-voltaをinstallしてください
+volta を install してください
 
 ### clone
 
-```git clone git@github.com:takumi12311123/summerCampTeamA.git```
+`git clone git@github.com:takumi12311123/summerCampTeamA.git`
 
-### docker (ROOT直下で)→一旦保留
-```sudo service docker start```
+### docker (ROOT 直下で)→ 一旦保留
 
-dockerがstartしたら
+`sudo service docker start`
 
-```docker compose up --build```
+docker が start したら
+
+`docker compose up --build`
 
 ### npm install
 
-```npm ci```
+`npm ci`
 
 ### 環境変数
 
-.env.exampleの中身が.envにcopyされます
+.env.example の中身が.env に copy されます
 
-.env.exampleに、トークンやパスワードを含めるのは禁止（セキュリティー的に危険です）
+.env.example に、トークンやパスワードを含めるのは禁止（セキュリティー的に危険です）
 
-```cp .env.example .env```
+`cp .env.example .env`
 
-### githubの使い方
+### github の使い方
 
-1.branchを切る
+1.branch を切る
 
 2.編集をする
 
-3.```git add .```
+3.`git add .`
 
-4.```git commit -m "commit名"```
+4.`git commit -m "commit名"`
 
-5.```git push -u origin branch名```
+5.`git push -u origin branch名`
 
-6.Pull Requestを出す
+6.Pull Request を出す
 
-7.conflictがなければmerge
-※conflictが出たとき、修正できるのであれば、修正後にmerge
+7.conflict がなければ merge
+※conflict が出たとき、修正できるのであれば、修正後に merge
 
-8.mergeしたら、毎回```git pull origin main```で自分の環境を最新版にしてください
+8.merge したら、毎回`git pull origin main`で自分の環境を最新版にしてください
+
+aiueo
