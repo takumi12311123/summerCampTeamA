@@ -20,6 +20,7 @@
     "dotenv": "^16.0.2",
     "html-webpack-plugin": "^5.5.0",
     "loadenv": "^2.2.0",
+    "node-env-file": "^0.1.8",
     "pug": "^3.0.2",
     "skyway-js": "^4.4.5"
   }

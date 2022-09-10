@@ -1,20 +1,18 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const loadenv = require("node-env-file");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 function getENV() {
-  //   const { API_KEY } = loadenv("../../.env");
-  const API_KEY = process.env.API_KEY;
+  const API_KEY = loadenv("../../.env");
   return {
     API_KEY,
   };
 }
 
-module.exports = (env, argv) => {
-  const htmlTemplate = path.join("./src/index.pug");
+module.exports.API = (env, argv) => {
+  const htmlTemplate = path.join("../home/index.pug");
   const ENV = getENV();
   return {
-    // 略
     module: {
       rules: [
         {
@@ -29,6 +27,7 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new webpack.ProgressPlugin(),
       new HtmlWebpackPlugin({
         template: htmlTemplate,
         data: ENV,
