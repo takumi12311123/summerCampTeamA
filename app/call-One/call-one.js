@@ -25,6 +25,38 @@ const Peer = window.Peer;
     debug: 3,
   }));
 
+  callTrigger.addEventListener("click", () => {
+    const mediaConnection = peer.call(remoteId.value, localStream);
+    mediaConnection.on("stream", async (stream) => {
+      // Render remote stream for caller
+      remoteVideo.srcObject = stream;
+      remoteVideo.playsInline = true;
+      await remoteVideo.play().catch(console.error);
+    });
+  });
+
+  // callされたときの処理
+  peer.on("call", (mediaConnection) => {
+    if (!peer.on) {
+      return;
+    }
+
+    mediaConnection.answer(localStream);
+
+    mediaConnection.on("stream", async (stream) => {
+      remoteVideo.srcObject = stream;
+      remoteVideo.playsInline = true;
+      await remoteVideo.play().catch(console.error);
+    });
+
+    mediaConnection.once("close", () => {
+      remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
+      remoteVideo.srcObject = null;
+    });
+
+    closeTrigger.addEventListener("click", () => mediaConnection.close(true));
+  });
+
   peer.once("open", (id) => (localId.textContent = id));
   peer.on("error", console.error);
 })();
