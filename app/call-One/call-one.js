@@ -59,7 +59,10 @@ const Peer = window.Peer;
       alert("通信が切断しました。");
     });
 
-    closeTrigger.addEventListener("click", () => mediaConnection.close(true));
+    closeTrigger.addEventListener("click", () => {
+      mediaConnection.close(true);
+      localVideo.srcObject = localStream;
+    });
   });
 
   peer.once("open", (id) => (localId.textContent = id));
