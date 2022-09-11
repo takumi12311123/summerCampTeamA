@@ -19,6 +19,7 @@ async function main() {
     })
     .catch(console.error);
 
+  // Render local stream
   localVideo.muted = true;
   localVideo.srcObject = localStream;
   localVideo.playsInline = true;
@@ -29,7 +30,6 @@ async function main() {
     debug: 3,
   }));
 
-  peer.once("open", (id) => (localId.textContent = id));
   peer.on("error", console.error);
 
   const muteButton = document.getElementById("mute-Button");
