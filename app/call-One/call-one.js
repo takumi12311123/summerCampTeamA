@@ -68,5 +68,23 @@ const Peer = window.Peer;
   peer.on("error", (err) => console.log(err.massage));
   const muteButton = document.getElementById("mute-Button");
 
-  // muteButton.addEventListener("click", () => );
+  muteButton.addEventListener("click", () => {
+    if (localVideo.muted == true) {
+      muteOn();
+    }
+    if (localVideo.muted == false) {
+      muteOff();
+    }
+  });
+
+  const videoButton = document.getElementById("camera-button");
+
+  videoButton.addEventListener("click", () => {
+    if (localVideo.srcObject == localStream) {
+      videoOff();
+    }
+    if (localVideo.srcObject == null) {
+      videoOn();
+    }
+  });
 })();
