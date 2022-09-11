@@ -52,14 +52,15 @@ const Peer = window.Peer;
     mediaConnection.once("close", () => {
       remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
       remoteVideo.srcObject = null;
+      alert("通信が切断しました。");
     });
 
     closeTrigger.addEventListener("click", () => mediaConnection.close(true));
   });
 
   peer.once("open", (id) => (localId.textContent = id));
-  peer.on("error", console.error);
-  const muteButton = document.getElementById("~");
+  peer.on("error", (err) => console.log(err.massage));
+  const muteButton = document.getElementById("mute-Button");
 
-  muteButton.addEventListener("click", () => {});
+  // muteButton.addEventListener("click", () => );
 })();
