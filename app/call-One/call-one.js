@@ -101,7 +101,7 @@ const Peer = window.Peer;
       .catch(console.error);
   }
 
-  const muteButton = document.getElementById("mute-Button");
+  const muteButton = document.getElementById("mute-button");
 
   muteButton.addEventListener("click", () => {
     if (localVideo.muted == true) {
