@@ -55,6 +55,12 @@ docker が start したら
 
 `cp .env.example .env`
 
+### keyの追加
+
+key.example.jsをkey.jsにcopyされます
+
+```cp key.example.js key.js```
+
 ### github の使い方
 
 1.branch を切る
