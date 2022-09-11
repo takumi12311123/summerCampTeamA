@@ -59,4 +59,7 @@ const Peer = window.Peer;
 
   peer.once("open", (id) => (localId.textContent = id));
   peer.on("error", console.error);
+  const muteButton = document.getElementById("~");
+
+  muteButton.addEventListener("click", () => {});
 })();

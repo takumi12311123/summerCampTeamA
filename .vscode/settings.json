@@ -1,4 +1,6 @@
 {
-    "editor.formatOnSave": true,
-    "extensions.ignoreRecommendations": false
+  "editor.formatOnSave": true,
+  "extensions.ignoreRecommendations": false,
+  "editor.formatOnType": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
