@@ -2,6 +2,7 @@ const Peer = window.Peer;
 const remoteStream = getElementById("js-remote-stream");
 const localStream = getElementById("js-local-stream");
 const remoteId = getElementById("js-remote-id");
+const localId = document.getElementById("js-local-id");
 const callTrigger = getElementById("js-call-trigger");
 const closeTrigger = getElementById("js-close-trigger");
 const meta = getElementById("js-meta");
