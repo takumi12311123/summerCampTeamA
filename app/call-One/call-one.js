@@ -69,13 +69,44 @@ const Peer = window.Peer;
     });
   });
 
+  async function muteOff() {
+    await navigator.mediaDevices
+      .getUserMedia({
+        audio: true,
+      })
+      .catch(console.error);
+  }
+
+  async function muteOn() {
+    await navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+      })
+      .catch(console.error);
+  }
+
+  async function videoOff() {
+    await navigator.mediaDevices
+      .getUserMedia({
+        video: false,
+      })
+      .catch(console.error);
+  }
+
+  async function videoOn() {
+    await navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+      })
+      .catch(console.error);
+  }
+
   const muteButton = document.getElementById("mute-Button");
 
   muteButton.addEventListener("click", () => {
     if (localVideo.muted == true) {
       muteOn();
-    }
-    if (localVideo.muted == false) {
+    } else if (localVideo.muted == false) {
       muteOff();
     }
   });
@@ -85,26 +116,10 @@ const Peer = window.Peer;
   videoButton.addEventListener("click", () => {
     if (localVideo.srcObject == localStream) {
       videoOff();
-    }
-    if (localVideo.srcObject == null) {
+    } else if (localVideo.srcObject == null) {
       videoOn();
     }
   });
+
   peer.on("error", (err) => console.log(err.massage));
 })();
-
-const muteOff(){
-  await navigator.mediaDevices
-  .getUserMedia({
-    audio: true,
-  })
-  .catch(console.error);
-}
-
-const muteOn(){
-  await navigator.mediaDevices
-  .getUserMedia({
-    audio: false,
-  })
-  .catch(console.error);
-}
