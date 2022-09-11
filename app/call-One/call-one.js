@@ -36,7 +36,8 @@ const Peer = window.Peer;
   closeTrigger.addEventListener("click", () => {
     localVideo.srcObject.getTracks().forEach((track) => track.stop());
     remoteVideo.srcObject = null;
-    alert("通信を切断しました");
+    // localVideo.srcObject = localStream;
+    alert("切断されました");
   });
 
   // callされたときの処理
@@ -56,12 +57,13 @@ const Peer = window.Peer;
     mediaConnection.once("close", () => {
       remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
       remoteVideo.srcObject = null;
-      alert("通信が切断しました。");
+      // localVideo.srcObject = localStream;
+      alert("切断されました");
     });
 
     closeTrigger.addEventListener("click", () => {
       mediaConnection.close(true);
-      localVideo.srcObject = localStream;
+      // localVideo.srcObject = localStream;
     });
   });
 
