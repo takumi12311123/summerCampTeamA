@@ -31,4 +31,26 @@ async function main() {
 
   peer.once("open", (id) => (localId.textContent = id));
   peer.on("error", console.error);
+
+  const muteButton = document.getElementById("mute-Button");
+
+  muteButton.addEventListener("click", () => {
+    if (localVideo.muted == true) {
+      muteOn();
+    }
+    if (localVideo.muted == false) {
+      muteOff();
+    }
+  });
+
+  const videoButton = document.getElementById("camera-button");
+
+  videoButton.addEventListener("click", () => {
+    if (localVideo.srcObject == localStream) {
+      videoOff();
+    }
+    if (localVideo.srcObject == null) {
+      videoOn();
+    }
+  });
 }
