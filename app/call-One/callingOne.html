@@ -9,6 +9,10 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" 
+    />
   </head>
   <body>
     <!-- TODO cssを充てる -->
@@ -18,16 +22,22 @@
     <button
     id = "mute-button"
     type = "button"
-    style="padding: 10px 25px"
+    style="padding: 0px 25px"
     >
-    mute
+    <span class="material-symbols-sharp">
+      mic
+      </span>
+    <br>mute
     </button>
     <button
       id="camera-button"
       type = "button"
       style="padding: 10px 19px"
     >
-    camera
+    <span class="material-symbols-sharp">
+      videocam
+      </span>
+    <br>camera
     </button>
     <div class="input-group" style="width: 500px">
     <p><br>あなたのid: <span id="js-local-id"></span></p>
