@@ -19,8 +19,24 @@
       </p> -->
       <div class="room">
         <video id="js-local-stream"></video>
-        <span id="js-room-mode"></span>:
+        <span id="js-room-mode"></span>
         <div class="input-group" style="width: 500px">
+        <button
+          id = "mute-button"
+          type = "button"
+          style="padding: 10px 25px"
+          >
+          mute
+          </button>
+          <button
+            id="camera-button"
+            type = "button"
+            style="padding: 10px 19px"
+          >
+          camera
+          </button>
+          <div class="input-group" style="width: 500px"></div>
+          <br>
           <input
             type="text"
             placeholder="Room Name"
@@ -68,8 +84,6 @@
             >
               Send
             </button>
-            <!-- TODO mutebutton -->
-            <!-- TODO camerabutton -->
           </div>
         </div>
       </div>
