@@ -1,16 +1,23 @@
 const Peer = window.Peer;
 
-async function main() {
+(async function main() {
   const localVideo = document.getElementById("js-local-stream");
-  const roomMode = document.getElementById("js-room-mode");
-  const roomId = document.getElementById("js-room-id");
   const joinTrigger = document.getElementById("js-join-trigger");
   const leaveTrigger = document.getElementById("js-leave-trigger");
   const remoteVideos = document.getElementById("js-remote-streams");
-  const messages = document.getElementById("js-messages");
+  const roomId = document.getElementById("js-room-id");
+  const roomMode = document.getElementById("js-room-mode");
   const localText = document.getElementById("js-local-text");
   const sendTrigger = document.getElementById("js-send-trigger");
-  const meta = document.getElementById("js-meta");
+  const messages = document.getElementById("js-messages");
+
+  const getRoomModeByHash = () => (location.hash === "#sfu" ? "sfu" : "mesh");
+
+  // roomMode.textContent = getRoomModeByHash();
+  // window.addEventListener(
+  //   "hashchange",
+  //   () => (roomMode.textContent = getRoomModeByHash())
+  // );
 
   const localStream = await navigator.mediaDevices
     .getUserMedia({
@@ -30,43 +37,69 @@ async function main() {
     debug: 3,
   }));
 
+  joinTrigger.addEventListener("click", () => {
+    if (!peer.open) {
+      return;
+    }
+
+    const room = peer.joinRoom(roomId.value, {
+      mode: getRoomModeByHash(),
+      stream: localStream,
+    });
+
+    room.once("open", () => {
+      messages.textContent += "=== You joined ===\n";
+    });
+    room.on("peerJoin", () => {
+      messages.textContent += `=== ${peerId} joined ===\n`;
+    });
+
+    room.on("stream", async (stream) => {
+      const newVideo = document.createElement("video");
+      newVideo.srcObject = stream;
+      newVideo.playsInline = true;
+      newVideo.setAttribute("data-peer-id", stream.peerId);
+      remoteVideos.append(newVideo);
+      await newVideo.play().catch(console.error);
+    });
+
+    room.on("data", ({ data, src }) => {
+      messages.textContent += `${src}: ${data}\n`;
+    });
+
+    room.on("peerLeave", (peerId) => {
+      const remoteVideo = remoteVideos.querySelector(
+        `[data-peer-id="${peerId}"]`
+      );
+      remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
+      remoteVideo.srcObject = null;
+      remoteVideo.remove();
+
+      messages.textContent += `=== ${peerId} left ===\n`;
+    });
+
+    room.once("close", () => {
+      sendTrigger.removeEventListener("click", onClickSend);
+      messages.textContent += "== You left ===\n";
+      Array.from(remoteVideos.children).forEach((remoteVideo) => {
+        remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
+        remoteVideo.srcObject = null;
+        remoteVideo.remove();
+      });
+    });
+
+    sendTrigger.addEventListener("click", onClickSend);
+    leaveTrigger.addEventListener("click", () => room.close(), { once: true });
+
+    function onClickSend() {
+      // Send message to all of the peers in the room via websocket
+      room.send(localText.value);
+      const name = document.getElementById("js-your-name");
+
+      messages.textContent += `${peer.id}: ${localText.value}\n`;
+      localText.value = "";
+    }
+  });
+
   peer.on("error", console.error);
-
-  const muteButton = document.getElementById("mute-Button");
-
-  muteButton.addEventListener("click", () => {
-    if (localVideo.muted == true) {
-      muteOn();
-    }
-    if (localVideo.muted == false) {
-      muteOff();
-    }
-  });
-
-  const videoButton = document.getElementById("camera-button");
-
-  videoButton.addEventListener("click", () => {
-    if (localVideo.srcObject == localStream) {
-      videoOff();
-    }
-    if (localVideo.srcObject == null) {
-      videoOn();
-    }
-  });
-}
-
-const muteOff(){
-  await navigator.mediaDevices
-  .getUserMedia({
-    audio: true,
-  })
-  .catch(console.error);
-}
-
-const muteOn(){
-  await navigator.mediaDevices
-  .getUserMedia({
-    audio: false,
-  })
-  .catch(console.error);
-}
+})();
