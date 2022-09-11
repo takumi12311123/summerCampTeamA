@@ -1,7 +1,7 @@
 const Peer = window.Peer;
 (async function main() {
-  const remoteVideo = document.getElementById("js-remote-stream");
-  const localVideo = document.getElementById("js-local-stream");
+  let remoteVideo = document.getElementById("js-remote-stream");
+  let localVideo = document.getElementById("js-local-stream");
   const remoteId = document.getElementById("js-remote-id");
   const localId = document.getElementById("js-local-id");
   const callTrigger = document.getElementById("js-call-trigger");
@@ -38,7 +38,6 @@ const Peer = window.Peer;
   closeTrigger.addEventListener("click", () => {
     localVideo.srcObject.getTracks().forEach((track) => track.stop());
     remoteVideo.srcObject = null;
-    // localVideo.srcObject = localStream;
     alert("切断されました");
   });
 
@@ -70,7 +69,7 @@ const Peer = window.Peer;
   });
 
   async function muteOff() {
-    await navigator.mediaDevices
+    localStream = await navigator.mediaDevices
       .getUserMedia({
         audio: true,
       })
@@ -78,27 +77,37 @@ const Peer = window.Peer;
   }
 
   async function muteOn() {
-    await navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-      })
-      .catch(console.error);
+    const tracks = document
+      .getElementById("js-local-stream")
+      .srcObject.getTracks();
+    tracks.forEach((track) => {
+      track.start();
+    });
+
+    document.getElementById("js-local-stream").srcObject = localStream;
   }
 
   async function videoOff() {
-    await navigator.mediaDevices
-      .getUserMedia({
-        video: false,
-      })
-      .catch(console.error);
+    const tracks = document
+      .getElementById("js-local-stream")
+      .srcObject.getTracks();
+    tracks.forEach((track) => {
+      track.stop();
+    });
+
+    document.getElementById("js-local-stream").srcObject = null;
   }
 
   async function videoOn() {
-    await navigator.mediaDevices
+    navigator.mediaDevices
       .getUserMedia({
         video: true,
+        audio: false,
       })
-      .catch(console.error);
+      .then((media) => {
+        localVideo = media;
+        localVideo.srcObject = localStream;
+      });
   }
 
   const muteButton = document.getElementById("mute-button");
@@ -116,7 +125,7 @@ const Peer = window.Peer;
   videoButton.addEventListener("click", () => {
     if (localVideo.srcObject == localStream) {
       videoOff();
-    } else if (localVideo.srcObject == null) {
+    } else {
       videoOn();
     }
   });
