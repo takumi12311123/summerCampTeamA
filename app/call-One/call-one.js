@@ -35,6 +35,12 @@ const Peer = window.Peer;
     });
   });
 
+  closeTrigger.addEventListener("click", () => {
+    localVideo.srcObject.getTracks().forEach((track) => track.stop());
+    remoteVideo.srcObject = null;
+    alert("通信を切断しました");
+  });
+
   // callされたときの処理
   peer.on("call", (mediaConnection) => {
     if (!peer.on) {
