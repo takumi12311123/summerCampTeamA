@@ -1,7 +1,7 @@
 const Peer = window.Peer;
 (async function main() {
-  const remoteVideo = document.getElementById("js-remote-stream");
-  const localVideo = document.getElementById("js-local-stream");
+  let remoteVideo = document.getElementById("js-remote-stream");
+  let localVideo = document.getElementById("js-local-stream");
   const remoteId = document.getElementById("js-remote-id");
   const localId = document.getElementById("js-local-id");
   const callTrigger = document.getElementById("js-call-trigger");
@@ -38,7 +38,6 @@ const Peer = window.Peer;
   closeTrigger.addEventListener("click", () => {
     localVideo.srcObject.getTracks().forEach((track) => track.stop());
     remoteVideo.srcObject = null;
-    // localVideo.srcObject = localStream;
     alert("切断されました");
   });
 
@@ -69,13 +68,54 @@ const Peer = window.Peer;
     });
   });
 
-  const muteButton = document.getElementById("mute-Button");
+  async function muteOff() {
+    localStream = await navigator.mediaDevices
+      .getUserMedia({
+        audio: true,
+      })
+      .catch(console.error);
+  }
+
+  async function muteOn() {
+    const tracks = document
+      .getElementById("js-local-stream")
+      .srcObject.getTracks();
+    tracks.forEach((track) => {
+      track.start();
+    });
+
+    document.getElementById("js-local-stream").srcObject = localStream;
+  }
+
+  async function videoOff() {
+    const tracks = document
+      .getElementById("js-local-stream")
+      .srcObject.getTracks();
+    tracks.forEach((track) => {
+      track.stop();
+    });
+
+    document.getElementById("js-local-stream").srcObject = null;
+  }
+
+  async function videoOn() {
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: false,
+      })
+      .then((media) => {
+        localVideo = media;
+        localVideo.srcObject = localStream;
+      });
+  }
+
+  const muteButton = document.getElementById("mute-button");
 
   muteButton.addEventListener("click", () => {
     if (localVideo.muted == true) {
       muteOn();
-    }
-    if (localVideo.muted == false) {
+    } else if (localVideo.muted == false) {
       muteOff();
     }
   });
@@ -85,26 +125,11 @@ const Peer = window.Peer;
   videoButton.addEventListener("click", () => {
     if (localVideo.srcObject == localStream) {
       videoOff();
-    }
-    if (localVideo.srcObject == null) {
+    } else {
       videoOn();
     }
   });
+
+  peer.once("open", (id) => (localId.textContent = id));
   peer.on("error", (err) => console.log(err.massage));
 })();
-
-const muteOff(){
-  await navigator.mediaDevices
-  .getUserMedia({
-    audio: true,
-  })
-  .catch(console.error);
-}
-
-const muteOn(){
-  await navigator.mediaDevices
-  .getUserMedia({
-    audio: false,
-  })
-  .catch(console.error);
-}
