@@ -6,6 +6,8 @@ const Peer = window.Peer;
   const localId = document.getElementById("js-local-id");
   const callTrigger = document.getElementById("js-call-trigger");
   const closeTrigger = document.getElementById("js-close-trigger");
+  const sendTrigger = document.getElementById("js-send-trigger");
+  const messages = document.getElementById("js-messages");
   const localStream = await navigator.mediaDevices
     .getUserMedia({
       audio: true,
@@ -36,7 +38,8 @@ const Peer = window.Peer;
   closeTrigger.addEventListener("click", () => {
     localVideo.srcObject.getTracks().forEach((track) => track.stop());
     remoteVideo.srcObject = null;
-    alert("通信を切断しました");
+    // localVideo.srcObject = localStream;
+    alert("切断されました");
   });
 
   // callされたときの処理
@@ -56,17 +59,16 @@ const Peer = window.Peer;
     mediaConnection.once("close", () => {
       remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
       remoteVideo.srcObject = null;
-      alert("通信が切断しました。");
+      // localVideo.srcObject = localStream;
+      alert("切断されました");
     });
 
     closeTrigger.addEventListener("click", () => {
       mediaConnection.close(true);
-      localVideo.srcObject = localStream;
+      // localVideo.srcObject = localStream;
     });
   });
 
-  peer.once("open", (id) => (localId.textContent = id));
-  peer.on("error", (err) => console.log(err.massage));
   const muteButton = document.getElementById("mute-Button");
 
   muteButton.addEventListener("click", () => {
@@ -88,6 +90,7 @@ const Peer = window.Peer;
       videoOn();
     }
   });
+  peer.on("error", (err) => console.log(err.massage));
 })();
 
 const muteOff(){
