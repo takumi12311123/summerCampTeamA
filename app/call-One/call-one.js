@@ -6,6 +6,8 @@ const Peer = window.Peer;
   const localId = document.getElementById("js-local-id");
   const callTrigger = document.getElementById("js-call-trigger");
   const closeTrigger = document.getElementById("js-close-trigger");
+  const sendTrigger = document.getElementById("js-send-trigger");
+  const messages = document.getElementById("js-messages");
   const localStream = await navigator.mediaDevices
     .getUserMedia({
       audio: true,
@@ -67,8 +69,6 @@ const Peer = window.Peer;
     });
   });
 
-  peer.once("open", (id) => (localId.textContent = id));
-  peer.on("error", (err) => console.log(err.massage));
   const muteButton = document.getElementById("mute-Button");
 
   muteButton.addEventListener("click", () => {
@@ -90,4 +90,5 @@ const Peer = window.Peer;
       videoOn();
     }
   });
+  peer.on("error", (err) => console.log(err.massage));
 })();
