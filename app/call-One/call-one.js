@@ -89,3 +89,19 @@ const Peer = window.Peer;
     }
   });
 })();
+
+const muteOff(){
+  await navigator.mediaDevices
+  .getUserMedia({
+    audio: true,
+  })
+  .catch(console.error);
+}
+
+const muteOn(){
+  await navigator.mediaDevices
+  .getUserMedia({
+    audio: false,
+  })
+  .catch(console.error);
+}
