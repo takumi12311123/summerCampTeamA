@@ -2,6 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="container">
@@ -9,18 +15,59 @@
         <div>
           <video id="js-local-stream"></video><br />
           <span id="js-room-mode"></span>:
-          <input type="text" placeholder="Room Name" id="js-room-id" />
-          <button id="js-join-trigger">Join</button>
-          <button id="js-leave-trigger">Leave</button>
+          <div class="input-group" style="width: 500px">
+            <input
+              type="text"
+              placeholder="Room Name"
+              id="js-room-id"
+              class="form-control"
+            />
+            <button
+              id="js-join-trigger"
+              class="btn btn-primary btn-sm"
+              class="btn btn-outline-secondary"
+              type="button"
+              style="padding: 10px 30px"
+            >
+              Join
+            </button>
+            <button
+              id="js-leave-trigger"
+              class="btn btn-secondary btn-sm"
+              class="btn btn-outline-secondary"
+              type="button"
+              style="padding: 10px 25px"
+            >
+              Leave
+            </button>
+          </div>
         </div>
 
         <div class="remote-streams" id="js-remote-streams"></div>
 
-        <div>
+        <div class="input-group" style="margin: 30px 0px">
           <pre class="messages" id="js-messages"></pre>
-          <input type="text" id="js-local-text" />
-          <input type="yourName" placeholder="your name" id="js-your-name" />
-          <button id="js-send-trigger">Send</button>
+          <input
+            type="text"
+            placeholder="text"
+            id="js-local-text"
+            class="form-control"
+          />
+          <input
+            type="yourName"
+            placeholder="your name"
+            id="js-your-name"
+            class="form-control"
+          />
+          <button
+            id="js-send-trigger"
+            class="btn btn-primary btn-sm"
+            class="btn btn-outline-secondary"
+            type="button"
+            style="padding: 10px 30px"
+          >
+            Send
+          </button>
         </div>
       </div>
       <p class="meta" id="js-meta"></p>
@@ -28,5 +75,10 @@
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.5.js"></script>
     <script src="../key/key.js"></script>
     <script src="./callGroup.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
