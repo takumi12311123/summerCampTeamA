@@ -51,7 +51,6 @@
         placeholder="Remote Peer ID"
         id="js-remote-id"
         class="form-control"
-        aria-label="Recipient's username with two button addons"
       />
       <button
         id="js-call-trigger"
@@ -75,10 +74,23 @@
       <!-- TODO camerabutton -->
     </div>
     <!-- TODO css -->
-    <div>
+    
+    <div class="input-group" style="width: 500px; margin: 30px 0px;">
       <pre class="messages" id="js-messages"></pre>
-      <input type="text" id="js-local-text">
-      <button id="js-send-trigger">Send</button>
+      <input
+        type="text"
+        placeholder="text"
+        id="js-local-text"
+        class="form-control"
+      />
+      <button
+        id="js-send-trigger"
+        class="btn btn-outline-primary"
+        type="button"
+        style="padding: 10px 30px"
+      >
+        Send
+      </button>
     </div>
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.5.js"></script>
     <script src="../key/key.js"></script>
