@@ -154,10 +154,7 @@ const Peer = window.Peer;
     leaveTrigger.addEventListener("click", () => room.close(), { once: true });
 
     function onClickSend() {
-      // Send message to all of the peers in the room via websocket
       room.send(localText.value);
-      const name = document.getElementById("js-your-name");
-
       messages.textContent += `${peer.id}: ${localText.value}\n`;
       localText.value = "";
     }
