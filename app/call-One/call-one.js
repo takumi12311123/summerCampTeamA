@@ -2,6 +2,7 @@ const Peer = window.Peer;
 (async function main() {
   let remoteVideo = document.getElementById("js-remote-stream");
   let localVideo = document.getElementById("js-local-stream");
+  const localText = document.getElementById("js-local-text");
   const remoteId = document.getElementById("js-remote-id");
   const localId = document.getElementById("js-local-id");
   const callTrigger = document.getElementById("js-call-trigger");
@@ -33,6 +34,65 @@ const Peer = window.Peer;
       remoteVideo.playsInline = true;
       await remoteVideo.play().catch(console.error);
     });
+    const dataConnection = peer.connect(remoteId.value);
+
+    dataConnection.once("open", async () => {
+      messages.textContent += `=== DataConnection has been opened ===\n`;
+
+      sendTrigger.addEventListener("click", onClickSend);
+    });
+
+    dataConnection.on("data", (data) => {
+      messages.textContent += `Remote: ${data}\n`;
+    });
+
+    dataConnection.once("close", () => {
+      messages.textContent += `=== DataConnection has been closed ===\n`;
+      sendTrigger.removeEventListener("click", onClickSend);
+    });
+
+    // Register closing handler
+    closeTrigger.addEventListener("click", () => dataConnection.close(true), {
+      once: true,
+    });
+
+    function onClickSend() {
+      const data = localText.value;
+      dataConnection.send(data);
+
+      messages.textContent += `You: ${data}\n`;
+      localText.value = "";
+    }
+  });
+
+  peer.on("connection", (dataConnection) => {
+    dataConnection.once("open", async () => {
+      messages.textContent += `=== DataConnection has been opened ===\n`;
+
+      sendTrigger.addEventListener("click", onClickSend);
+    });
+
+    dataConnection.on("data", (data) => {
+      messages.textContent += `Remote: ${data}\n`;
+    });
+
+    dataConnection.once("close", () => {
+      messages.textContent += `=== DataConnection has been closed ===\n`;
+      sendTrigger.removeEventListener("click", onClickSend);
+    });
+
+    // Register closing handler
+    closeTrigger.addEventListener("click", () => dataConnection.close(true), {
+      once: true,
+    });
+
+    function onClickSend() {
+      const data = localText.value;
+      dataConnection.send(data);
+
+      messages.textContent += `You: ${data}\n`;
+      localText.value = "";
+    }
   });
 
   closeTrigger.addEventListener("click", () => {
