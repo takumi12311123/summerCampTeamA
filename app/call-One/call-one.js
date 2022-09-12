@@ -115,7 +115,7 @@ const Peer = window.Peer;
   muteButton.addEventListener("click", () => {
     if (localVideo.muted == true) {
       muteOn();
-    } else if (localVideo.muted == false) {
+    } else {
       muteOff();
     }
   });
