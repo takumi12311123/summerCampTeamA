@@ -88,6 +88,48 @@ const Peer = window.Peer;
       });
     });
 
+    async function muteOff() {
+      localStream = await navigator.mediaDevices
+        .getUserMedia({
+          audio: true,
+        })
+        .catch(console.error);
+    }
+
+    async function muteOn() {
+      const tracks = document
+        .getElementById("js-local-stream")
+        .srcObject.getTracks();
+      tracks.forEach((track) => {
+        track.start();
+      });
+
+      document.getElementById("js-local-stream").srcObject = localStream;
+    }
+
+    async function videoOff() {
+      const tracks = document
+        .getElementById("js-local-stream")
+        .srcObject.getTracks();
+      tracks.forEach((track) => {
+        track.stop();
+      });
+
+      document.getElementById("js-local-stream").srcObject = null;
+    }
+
+    async function videoOn() {
+      navigator.mediaDevices
+        .getUserMedia({
+          video: true,
+          audio: false,
+        })
+        .then((media) => {
+          localVideo = media;
+          localVideo.srcObject = localStream;
+        });
+    }
+
     const muteButton = document.getElementById("mute-button");
 
     muteButton.addEventListener("click", () => {
