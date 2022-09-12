@@ -88,6 +88,26 @@ const Peer = window.Peer;
       });
     });
 
+    const muteButton = document.getElementById("mute-button");
+
+    muteButton.addEventListener("click", () => {
+      if (localVideo.muted == true) {
+        muteOn();
+      } else {
+        muteOff();
+      }
+    });
+
+    const videoButton = document.getElementById("camera-button");
+
+    videoButton.addEventListener("click", () => {
+      if (localVideo.srcObject == localStream) {
+        videoOff();
+      } else {
+        videoOn();
+      }
+    });
+
     sendTrigger.addEventListener("click", onClickSend);
     leaveTrigger.addEventListener("click", () => room.close(), { once: true });
 
