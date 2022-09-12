@@ -21,9 +21,18 @@
               width: 24%;
               height: auto;
             "
-          ></video
-          ><br />
-          <span id="js-room-mode"></span>:
+          ></video>
+          <div
+            class="remote-streams"
+            id="js-remote-streams"
+            style="
+              display: inline-block;
+              vertical-align: middle;
+              width: 24%;
+              height: auto;
+            "
+          ></div>
+          <span id="js-room-mode"></span>
           <div class="input-group" style="width: 500px">
             <input
               type="text"
@@ -51,17 +60,6 @@
             </button>
           </div>
         </div>
-
-        <div
-          class="remote-streams"
-          id="js-remote-streams"
-          style="
-            display: inline-block;
-            vertical-align: middle;
-            width: 24%;
-            height: auto;
-          "
-        ></div>
 
         <div class="input-group" style="margin: 30px 0px">
           <pre class="messages" id="js-messages"></pre>
